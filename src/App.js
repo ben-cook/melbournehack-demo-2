@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography } from "@material-ui/core";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const API_URL =
+  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc";
 
 function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios(API_URL).then((res) => setData(res.data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Typography variant="h3">Cryptocurrencies!</Typography>
+      <pre>{JSON.stringify(data, undefined, 2)}</pre>
+    </Container>
   );
 }
 

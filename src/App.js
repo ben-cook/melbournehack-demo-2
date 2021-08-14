@@ -1,13 +1,7 @@
-import {
-  Container,
-  Typography,
-  Card,
-  Grid,
-  CardContent,
-  CardMedia,
-} from "@material-ui/core";
+import { Container, Typography, Grid } from "@material-ui/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import CoinCard from "./components/CoinCard";
 
 const API_URL =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc";
@@ -27,15 +21,7 @@ function App() {
         {data &&
           data.map((coin) => (
             <Grid item key={coin.name} xs={3}>
-              <Card>
-                <CardMedia
-                  image={coin.image}
-                  style={{ height: 250 }}
-                ></CardMedia>
-                <CardContent>
-                  <Typography variant="h6">{coin.name}</Typography>
-                </CardContent>
-              </Card>
+              <CoinCard {...coin} />
             </Grid>
           ))}
       </Grid>

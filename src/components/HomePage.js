@@ -1,17 +1,15 @@
 import { Typography, Grid } from "@material-ui/core";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useFetch } from "../hooks";
 import CoinCard from "./CoinCard";
 
-const API_URL =
-  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc";
-
 const HomePage = () => {
-  const [data, setData] = useState(null);
+  const { data, status } = useFetch(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc"
+  );
 
-  useEffect(() => {
-    axios(API_URL).then((res) => setData(res.data.slice(0, 30)));
-  }, []);
+  if (status === "fetching") {
+    return <Typography>Loading...</Typography>;
+  }
 
   return (
     <>

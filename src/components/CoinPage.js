@@ -1,16 +1,25 @@
+import { Typography } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks";
 
 const CoinPage = () => {
-  const { name } = useParams();
+  const { id } = useParams();
 
   const { data, status } = useFetch(
-    `https://api.coingecko.com/api/v3/coins/${name}`
+    `https://api.coingecko.com/api/v3/coins/${id}`
   );
+
+  if (status !== "succeeded") {
+    return <Typography>Loading...</Typography>;
+  }
+
+  const { name, description } = data;
 
   return (
     <>
-      <h1>Coin Page</h1>
+      <Typography variant="h3">{name}</Typography>
+      <div dangerouslySetInnerHTML={{ __html: description.en }}></div>
+
       <pre>{JSON.stringify(data, undefined, 2)}</pre>
     </>
   );

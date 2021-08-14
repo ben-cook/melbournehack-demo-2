@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage";
 
 const Router = () => (
   <Switch>
-    <Route path="/:name" component={CoinPage} />
+    <Route path="/:id" component={CoinPage} />
     <Route path="/" component={HomePage} />
   </Switch>
 );

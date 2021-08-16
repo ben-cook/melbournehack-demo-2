@@ -23,8 +23,6 @@ const HomePage = () => {
             </Grid>
           ))}
       </Grid>
-
-      <pre>{JSON.stringify(data, undefined, 2)}</pre>
     </>
   );
 };

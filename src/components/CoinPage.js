@@ -19,8 +19,6 @@ const CoinPage = () => {
     <>
       <Typography variant="h3">{name}</Typography>
       <div dangerouslySetInnerHTML={{ __html: description.en }}></div>
-
-      <pre>{JSON.stringify(data, undefined, 2)}</pre>
     </>
   );
 };
